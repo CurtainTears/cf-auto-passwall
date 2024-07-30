@@ -32,7 +32,7 @@ green "=========================================================="
  red  "脚本第44行 bandwidth 后面的数值为期望优选带宽大小（ Mbps ）  "
 green "=================脚本正在运行中.....======================="
 sleep 8s
-/etc/init.d/haproxy stop
+# /etc/init.d/haproxy stop
 /etc/init.d/passwall stop
 localport=8443
 remoteport=443
@@ -41,7 +41,7 @@ declare -i speed
 
 
 # 下面为期望优选带宽的大小 默认 5M
-bandwidth=5
+bandwidth=200
 
 
 speed=bandwidth*128*1024
@@ -71,7 +71,7 @@ do
 						city=$(cat meta.txt | grep city: | awk -F: '{print $2}')
 						latitude=$(cat meta.txt | grep latitude: | awk -F: '{print $2}')
 						longitude=$(cat meta.txt | grep longitude: | awk -F: '{print $2}')
-						curl --ipv4 --resolve service.udpfile.com:443:$resolveip --retry 3 "https://service.udpfile.com?asn="$asn"&city="$city"" -o data.txt -#
+						curl --ipv4 --resolve service.baipiao.eu.org:443:$resolveip --retry 3 "https://service.baipiao.eu.org?asn="$asn"&city="$city"" -o data.txt -#
 						break
 					fi
 				done
@@ -87,7 +87,7 @@ do
 						city=$(cat meta.txt | grep city: | awk -F: '{print $2}')
 						latitude=$(cat meta.txt | grep latitude: | awk -F: '{print $2}')
 						longitude=$(cat meta.txt | grep longitude: | awk -F: '{print $2}')
-						curl --ipv4 --retry 3 "https://service.udpfile.com?asn="$asn"&city="$city"" -o data.txt -#
+						curl --ipv4 --retry 3 "https://service.baipiao.eu.org?asn="$asn"&city="$city"" -o data.txt -#
 						break
 					fi
 				done
@@ -239,9 +239,9 @@ do
 			echo 峰值速度 $max kB/s
 			if [ $max1 -ge $max2 ]
 			then
-				curl --ipv4 --resolve service.udpfile.com:443:$first --retry 3 -s -X POST -d ''20210903-$first-$max1'' "https://service.udpfile.com?asn="$asn"&city="$city"" -o /dev/null --connect-timeout 5 --max-time 10
+				curl --ipv4 --resolve service.baipiao.eu.org:443:$first --retry 3 -s -X POST -d ''20210903-$first-$max1'' "https://service.baipiao.eu.org?asn="$asn"&city="$city"" -o /dev/null --connect-timeout 5 --max-time 10
 			else
-				curl --ipv4 --resolve service.udpfile.com:443:$first --retry 3 -s -X POST -d ''20210903-$first-$max2'' "https://service.udpfile.com?asn="$asn"&city="$city"" -o /dev/null --connect-timeout 5 --max-time 10
+				curl --ipv4 --resolve service.baipiao.eu.org:443:$first --retry 3 -s -X POST -d ''20210903-$first-$max2'' "https://service.baipiao.eu.org?asn="$asn"&city="$city"" -o /dev/null --connect-timeout 5 --max-time 10
 			fi
 			echo 第一次测试 $second
 			curl --resolve $domain:443:$second https://$domain/$file -o /dev/null --connect-timeout 5 --max-time 10 > log.txt 2>&1
@@ -315,9 +315,9 @@ do
 			echo 峰值速度 $max kB/s
 			if [ $max1 -ge $max2 ]
 			then
-				curl --ipv4 --resolve service.udpfile.com:443:$second --retry 3 -s -X POST -d ''20210903-$second-$max1'' "https://service.udpfile.com?asn="$asn"&city="$city"" -o /dev/null --connect-timeout 5 --max-time 10
+				curl --ipv4 --resolve service.baipiao.eu.org:443:$second --retry 3 -s -X POST -d ''20210903-$second-$max1'' "https://service.baipiao.eu.org?asn="$asn"&city="$city"" -o /dev/null --connect-timeout 5 --max-time 10
 			else
-				curl --ipv4 --resolve service.udpfile.com:443:$second --retry 3 -s -X POST -d ''20210903-$second-$max2'' "https://service.udpfile.com?asn="$asn"&city="$city"" -o /dev/null --connect-timeout 5 --max-time 10
+				curl --ipv4 --resolve service.baipiao.eu.org:443:$second --retry 3 -s -X POST -d ''20210903-$second-$max2'' "https://service.baipiao.eu.org?asn="$asn"&city="$city"" -o /dev/null --connect-timeout 5 --max-time 10
 			fi
 			echo 第一次测试 $third
 			curl --resolve $domain:443:$third https://$domain/$file -o /dev/null --connect-timeout 5 --max-time 10 > log.txt 2>&1
@@ -391,9 +391,9 @@ do
 			echo 峰值速度 $max kB/s
 			if [ $max1 -ge $max2 ]
 			then
-				curl --ipv4 --resolve service.udpfile.com:443:$third --retry 3 -s -X POST -d ''20210903-$third-$max1'' "https://service.udpfile.com?asn="$asn"&city="$city"" -o /dev/null --connect-timeout 5 --max-time 10
+				curl --ipv4 --resolve service.baipiao.eu.org:443:$third --retry 3 -s -X POST -d ''20210903-$third-$max1'' "https://service.baipiao.eu.org?asn="$asn"&city="$city"" -o /dev/null --connect-timeout 5 --max-time 10
 			else
-				curl --ipv4 --resolve service.udpfile.com:443:$third --retry 3 -s -X POST -d ''20210903-$third-$max2'' "https://service.udpfile.com?asn="$asn"&city="$city"" -o /dev/null --connect-timeout 5 --max-time 10
+				curl --ipv4 --resolve service.baipiao.eu.org:443:$third --retry 3 -s -X POST -d ''20210903-$third-$max2'' "https://service.baipiao.eu.org?asn="$asn"&city="$city"" -o /dev/null --connect-timeout 5 --max-time 10
 			fi
 		fi
 	done
@@ -406,7 +406,7 @@ done
 	start_seconds=$(date --date="$starttime" +%s)
 	end_seconds=$(date --date="$endtime" +%s)
 	clear
-	curl --ipv4 --resolve service.udpfile.com:443:$anycast --retry 3 -s -X POST -d ''20210903-$anycast-$max'' "https://service.udpfile.com?asn="$asn"&city="$city"" -o temp.txt
+	curl --ipv4 --resolve service.baipiao.eu.org:443:$anycast --retry 3 -s -X POST -d ''20210903-$anycast-$max'' "https://service.baipiao.eu.org?asn="$asn"&city="$city"" -o temp.txt
 	publicip=$(cat temp.txt | grep publicip= | cut -f 2- -d'=')
 	colo=$(cat temp.txt | grep colo= | cut -f 2- -d'=')
 	rm -rf temp.txt
@@ -419,8 +419,8 @@ done
 	echo 峰值速度 $max kB/s
 	echo 数据中心 $colo
 	echo 总计用时 $((end_seconds-start_seconds)) 秒
-	uci set passwall.xxxxxxxxxx.address=$anycast
+	uci set passwall.c8OplZzL.address=$anycast
 	uci commit passwall
-	/etc/init.d/haproxy restart
+	# /etc/init.d/haproxy restart
 	/etc/init.d/passwall restart
 	exit
